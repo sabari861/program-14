@@ -24,3 +24,19 @@ DELIMITER ;
 
 -- Test
 SELECT CountStudentsByDepartment(1) AS StudentCount;
+CREATE OR REPLACE FUNCTION CountStudents (
+    p_DepartmentID IN Student.DepartmentID%TYPE
+)
+RETURN NUMBER
+IS
+    student_count NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO student_count
+    FROM Student
+    WHERE DepartmentID = p_DepartmentID;
+
+    RETURN student_count;
+END;
+/
+
