@@ -39,3 +39,25 @@ DELIMITER ;
 CALL InsertStudent(105, 'Kavin', 1);
 
 SELECT * FROM Student;
+CREATE OR REPLACE PROCEDURE InsertStudent (
+    p_StudentID     IN Student.StudentID%TYPE,
+    p_StudentName   IN Student.StudentName%TYPE,
+    p_DepartmentID  IN Student.DepartmentID%TYPE
+)
+IS
+BEGIN
+    INSERT INTO Student (
+        StudentID,
+        StudentName,
+        DepartmentID
+    )
+    VALUES (
+        p_StudentID,
+        p_StudentName,
+        p_DepartmentID
+    );
+
+    DBMS_OUTPUT.PUT_LINE('Student inserted successfully.');
+END;
+/
+
